@@ -1,42 +1,56 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function WeatherApp() {
-  const [city, setCity] = useState(null);
-  const [search, setSearch] = useState("Nagpur");
+  const [city, setCity] = useState("Nagpur");
+  const [weatherData, setWeatherData] = useState({});
+  const [error, setError] = useState(null);
 
-  useEffect( () => {
-    const fetchApi= async () => {
-        const url =  `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=e777c7197894c7f37c2846a831f411dc`;
-
-        const response = await fetch(url);
-        const resp = await response.json();
-        setCity(resp);
-
-        console.log(resp);
-        
-      };
+  const handleSubmit = (event) => {
+    event.preventDefault();
     fetchApi();
-},[search]);
+  };
+  const handleChange = (event) => {
+    setCity(event.target.value);
+  };
 
-    return (
-        <div>
-                    <div className="inputData">
-                        <input type="search" 
-                        className="inputSearch" 
-                        value={search}
-                        onChange={(event)=>{ setSearch(event.target.value)}} />
-                    </div>
+  useEffect(() => {
+    fetchApi();
+  }, []);
 
-                {!city ? (<p>No data Found ji</p>) : (
-                    <div className="data">
-                        <h2>Weather in {search}</h2>
-                        <p>Temperature: {city.main.temp}°C</p>
-                        <p>Minimum Temperature: {city.main.temp_min}°C</p>
-                        <p>Maximum Temperature: {city.main.temp_max}°C</p>
-                        <p>Humidity: {city.main.humidity}</p>
-                        <p>Country Code: {city.sys.country}</p>
-                        <p>Description: {city.weather[0].description}</p>
-                    </div>
-                 )} 
-        </div>
- )};
+  const fetchApi = () => {
+    axios.get(
+        `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=7700d2842cebea400b6af27412b98602`
+      )
+      .then((response) => {
+        setWeatherData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        setError("Data Not Found");
+      });
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={city} onChange={handleChange} />
+        <button type="submit">search</button>
+      </form>
+
+      {error ? ( <h1>{error}</h1>):
+      ( weatherData.main && (
+          <div className="data">
+            <h2>Weather in {city}</h2>
+            <p>Temperature: {weatherData.main.temp}°C</p>
+            <p>Minimum Temperature: {weatherData.main.temp_min}°C</p>
+            <p>Maximum Temperature: {weatherData.main.temp_max}°C</p>
+            <p>Humidity: {weatherData.main.humidity}</p>
+            <p>Country Code: {weatherData.sys.country}</p>
+            <p>Description: {weatherData.weather[0].description}</p>
+          </div>
+        )
+      )}
+    </div>
+  );
+}
