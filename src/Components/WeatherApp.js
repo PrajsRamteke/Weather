@@ -9,9 +9,10 @@ export default function WeatherApp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     fetchApi();
-  };
-  const handleChange = (event) => {
+};
+const handleChange = (event) => {
     setCity(event.target.value);
+    setError(null);
   };
 
   useEffect(() => {
