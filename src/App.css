@@ -1,38 +1,109 @@
-.App {
-  text-align: center;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "poppins";
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: rgb(83, 42, 126);
+}
+.container{
+  text-align: center;
+  width: 360px;
+  padding: 16px 10px;
+  margin: 20px;
+  border-radius: 10px;
+  background: rgb(220, 220, 220);
+  color: black;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+.container .data h2{
+  font-size: 40px;
+  font-weight: 500;
+}
+.container .data .temperature{
+  font-size: 50px;
+}
+.container .data .temperature span{
+  font-size: 30px;
+}
+.description{
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.minmax{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.minmax p{
+  padding: 6px;
+  font-weight: 500;
+  background-color: rgb(191, 191, 192);
+  border-radius: 10px;
+  padding: 12px;
+  margin: 6px 6px;
+}
+.good{
+  font-size: 18px;
+  font-weight: 300;
+}
+.container form{
+  padding: 10px;
+}
+.container form input{
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+}
+input:focus{
+  border: none;
+}
+.container form button{
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  margin-left: 6px;
+  color: black;
+}
+button:hover{
+  background-color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* media query */
+@media only screen and (max-width: 320px) {
+  .container{
+    text-align: center;
+    width: 310px;
+    padding: 18px 6px;
+    margin: 20px;
   }
-  to {
-    transform: rotate(360deg);
+  .container .data h2{
+    font-size: 30px;
+  }
+  .container .data .temperature{
+    font-size: 36px;
+  }
+  .container .data .temperature span{
+    font-size: 20px;
+  }
+  .container form button{
+    padding: 6px 12px;  
+    margin-top: 6px;
+    font-size: 16px;
+    text-align: center;
+    width: 240px;
+    
+  }
+  .container form input{
+    padding: 6px 12px;
+    font-size: 16px;
+    text-align: center;
+    width: 240px;
   }
 }
