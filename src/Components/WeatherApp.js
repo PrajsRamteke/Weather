@@ -56,7 +56,7 @@ const handleChange = (event) => {
               <p>Min: {weatherData.main.temp_min}<span>°C</span></p>
               <p>Max: {weatherData.main.temp_max}<span>°C</span></p>
             </div>
-            
+
             <p>Humidity: {weatherData.main.humidity}</p>
 
         </div>
