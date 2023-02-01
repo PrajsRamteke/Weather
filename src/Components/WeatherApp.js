@@ -14,6 +14,7 @@ export default function WeatherApp() {
   };
 const handleChange = (event) => {
     setCity(event.target.value);
+    // console.log(event.target.value);
   };
 
   useEffect(() => {
@@ -32,11 +33,14 @@ const handleChange = (event) => {
         setError("Data Not Found");
       });
   };
+  const handelEnter=()=>{
+    handleSubmit();
+  }
 
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <input type="text" value={city} onChange={handleChange} />
+        <input type="text" value={city} onChange={handleChange} onKeyUp={handelEnter}/>
         <button type="submit">Search</button>
       </form>
 
